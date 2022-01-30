@@ -5,6 +5,7 @@ const hand = function(req, res){
     let path = __dirname + "/views/index.html";
     res.sendFile(path);
 }
+app.use('/public', express.static(__dirname + "/public"))
 console.log(app.get('/', hand))
 
 
