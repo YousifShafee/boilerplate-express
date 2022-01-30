@@ -7,11 +7,10 @@ const hand = function(req, res){
 }
 app.use('/public', express.static(__dirname + "/public"))
 console.log(app.get('/', hand))
-
-
-
-
-
+const json_fun = function(req, res){
+  res.json({"message": "Hello json"})
+}
+console.log(app.get('/json', json_fun))
 
 
 
