@@ -2,12 +2,10 @@ var express = require('express');
 var app = express();
 console.log("Hello World");
 const hand = function(req, res){
-    req.send("Hello Express")
+    let path = __dirname + "/views/index.html";
+    res.sendFile(path);
 }
-app.get('/', hand)
-
-
-
+console.log(app.get('/', hand))
 
 
 
