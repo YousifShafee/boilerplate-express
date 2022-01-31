@@ -36,5 +36,10 @@ now_fun = (req, res) => {
 }
 console.log(app.get('/now', now_midl, now_fun))
 
+echo_fun = (req, res) => {
+  var {word} = req.params
+  res.json({echo: word})
+}
+console.log(app.get('/:word/echo', echo_fun))
 
  module.exports = app;
