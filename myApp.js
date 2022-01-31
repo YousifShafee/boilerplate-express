@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser')
 console.log("Hello World");
 
 function mware(req, res, next) {
@@ -42,12 +43,16 @@ var echo_fun = (req, res) => {
 }
 console.log(app.get('/:word/echo', echo_fun))
 
-var name_fun = (req, res) => {
+app.use(bodyParser.urlencoded({extended: false}))
+
+var name_req = (req, res) => {
   var {first, last} = req.query;
   res.json({name: first + ' ' + last})
 }
-console.log(app.route('/name').get(name_fun))
-
-app.use(bodyParser.urlencoded({extended: false}))
+var name_res = (req, res) => {
+  var {first, last} = req.body;
+  res.json({name: first + ' ' + last})
+}
+console.log(app.route('/name').get(name_req).post(name_res))
 
 module.exports = app;
