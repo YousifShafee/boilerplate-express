@@ -27,19 +27,25 @@ const json_fun = function(req, res){
 }
 console.log(app.get('/json', json_fun))
 
-now_midl = (req, res, next) => {
+var now_midl = (req, res, next) => {
   req.time = new Date().toString()
   next()
 }
-now_fun = (req, res) => {
+var now_fun = (req, res) => {
   res.json({'time': req.time})
 }
 console.log(app.get('/now', now_midl, now_fun))
 
-echo_fun = (req, res) => {
+var echo_fun = (req, res) => {
   var {word} = req.params
   res.json({echo: word})
 }
 console.log(app.get('/:word/echo', echo_fun))
 
- module.exports = app;
+var name_fun = (req, res) => {
+  var {first, last} = req.query;
+  res.json({name: first + ' ' + last})
+}
+console.log(app.route('/name').get(name_fun).post(name_fun))
+
+module.exports = app;
