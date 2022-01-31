@@ -46,6 +46,8 @@ var name_fun = (req, res) => {
   var {first, last} = req.query;
   res.json({name: first + ' ' + last})
 }
-console.log(app.route('/name').get(name_fun).post(name_fun))
+console.log(app.route('/name').get(name_fun))
+
+app.use(bodyParser.urlencoded({extended: false}))
 
 module.exports = app;
