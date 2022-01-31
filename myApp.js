@@ -27,10 +27,14 @@ const json_fun = function(req, res){
 }
 console.log(app.get('/json', json_fun))
 
-
-
-
-
+now_midl = (req, res, next) => {
+  req.time = new Date().toString()
+  next()
+}
+now_fun = (req, res) => {
+  res.json({'time': req.time})
+}
+console.log(app.get('/now', now_midl, now_fun))
 
 
  module.exports = app;
